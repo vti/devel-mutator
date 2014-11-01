@@ -16,6 +16,7 @@ sub new {
     bless $self, $class;
 
     $self->{verbose} = $params{verbose} || 0;
+    $self->{timeout} = $params{timeout} || 10;
     $self->{root}    = $params{root}    || '.';
     $self->{command} = $params{command} || 'prove -l t';
 
@@ -29,9 +30,11 @@ sub run {
     my @mutants = $self->_read_dir($mutants_dir);
 
     my $total  = @mutants;
+    my $current = 1;
     my $failed = 0;
     foreach my $mutant (@mutants) {
-        print "$mutant ... ";
+        print "($current/$total) $mutant ... ";
+        $current++;
 
         my ($orig_file) = $mutant =~ m{^$mutants_dir/.*?/(.*$)};
         move($orig_file, "$orig_file.bak");
@@ -44,10 +47,12 @@ sub run {
             $failed++;
             print "not ok\n";
 
-            print diff($mutant, "$orig_file.bak") if $self->{verbose};
+            print diff($mutant, "$orig_file.bak");
         }
         elsif ($rv == -1) {
-            print "n/a (timeout)\n";
+            print "n/a (timeout $self->{timeout}s)\n";
+
+            print diff($mutant, "$orig_file.bak");
         }
         else {
             print "ok\n";
@@ -86,7 +91,7 @@ sub _run_command {
 
     eval {
         local $SIG{ALRM} = sub { die $ALARM_EXCEPTION };
-        alarm 10;
+        alarm $self->{timeout};
 
         waitpid($pid, 0);
 
