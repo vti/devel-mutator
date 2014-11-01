@@ -101,6 +101,8 @@ sub _run_command {
     my $rv = $?;
 
     if ($@) {
+        alarm 0;
+
         if ($@ =~ quotemeta($ALARM_EXCEPTION)) {
             kill -9, $pid;
             $rv = -1;
