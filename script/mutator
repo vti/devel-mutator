@@ -1,0 +1,36 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+use Docopt;
+use Devel::Mutator;
+use Devel::Mutator::Command::Mutate;
+use Devel::Mutator::Command::Test;
+
+$|++;
+
+my $opts = docopt();
+
+if ($opts->{'--version'}) {
+    print 'mutator: ' . $Devel::Mutator::VERSION, "\n";
+    exit 0;
+}
+elsif ($opts->{mutate}) {
+    Devel::Mutator::Command::Mutate->new()->run(@{$opts->{'<file>'}});
+}
+elsif ($opts->{test}) {
+    Devel::Mutator::Command::Test->new(verbose => $opts->{'--verbose'})->run;
+}
+
+__END__
+
+=head1 SYNOPSIS
+
+  mutator mutate <file>...
+  mutator test [--verbose] [--command=prove -l t]
+  mutator -h | --help
+  mutator --version
+
+  -h --help     Show this screen.
+  --version     Show version.
