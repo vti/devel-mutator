@@ -37,6 +37,7 @@ sub run {
         $current++;
 
         my ($orig_file) = $mutant =~ m{^$mutants_dir/.*?/(.*$)};
+        $orig_file = File::Spec->catfile($self->{root}, $orig_file);
         move($orig_file, "$orig_file.bak");
 
         copy($mutant, $orig_file);
@@ -64,12 +65,12 @@ sub run {
     if ($failed) {
         print "Result: FAIL ($failed/$total)\n";
 
-        exit 255;
+        return 255;
     }
     else {
         print "Result: PASS\n";
 
-        exit 0;
+        return 0;
     }
 }
 

@@ -23,7 +23,7 @@ elsif ($opts->{mutate}) {
     )->run(@{$opts->{'<file>'}});
 }
 elsif ($opts->{test}) {
-    Devel::Mutator::Command::Test->new(
+    exit Devel::Mutator::Command::Test->new(
         verbose => ($opts->{'-v'} || $opts->{'--verbose'}),
         timeout => $opts->{'--timeout'}
     )->run;
