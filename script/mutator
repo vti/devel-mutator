@@ -25,7 +25,7 @@ elsif ($opts->{mutate}) {
 elsif ($opts->{test}) {
     exit Devel::Mutator::Command::Test->new(
         verbose => ($opts->{'-v'} || $opts->{'--verbose'}),
-        timeout => $opts->{'--timeout'}
+        remove => $opts->{'--remove'} timeout => $opts->{'--timeout'}
     )->run;
 }
 
@@ -34,7 +34,7 @@ __END__
 =head1 SYNOPSIS
 
   mutator mutate [-r | --recursive] [-v | --verbose] <file>...
-  mutator test [-v | --verbose] [--timeout=10] [--command=prove -l t]
+  mutator test [-v | --verbose] [--timeout=10] [--remove] [--command=prove -l t]
   mutator -h | --help
   mutator --version
 

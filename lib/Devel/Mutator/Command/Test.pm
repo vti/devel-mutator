@@ -5,6 +5,7 @@ use warnings;
 
 use Capture::Tiny qw(capture);
 use Text::Diff;
+use File::Path qw(remove_tree);
 use File::Copy qw(copy move);
 use File::Spec;
 
@@ -16,6 +17,7 @@ sub new {
     bless $self, $class;
 
     $self->{verbose} = $params{verbose} || 0;
+    $self->{remove}  = $params{remove}  || 0;
     $self->{timeout} = $params{timeout} || 10;
     $self->{root}    = $params{root}    || '.';
     $self->{command} = $params{command} || 'prove -l t';
@@ -29,14 +31,14 @@ sub run {
     my $mutants_dir = File::Spec->catfile($self->{root}, 'mutants');
     my @mutants = $self->_read_dir($mutants_dir);
 
-    my $total  = @mutants;
+    my $total   = @mutants;
     my $current = 1;
-    my $failed = 0;
+    my $failed  = 0;
     foreach my $mutant (@mutants) {
         print "($current/$total) $mutant ... ";
         $current++;
 
-        my ($orig_file) = $mutant =~ m{^$mutants_dir/.*?/(.*$)};
+        my ($mutant_id, $orig_file) = $mutant =~ m{^$mutants_dir/(.*?)/(.*$)};
         $orig_file = File::Spec->catfile($self->{root}, $orig_file);
         move($orig_file, "$orig_file.bak");
 
@@ -56,6 +58,10 @@ sub run {
             print diff($mutant, "$orig_file.bak");
         }
         else {
+            if ($self->{remove}) {
+                remove_tree("$mutants_dir/$mutant_id");
+            }
+
             print "ok\n";
         }
 

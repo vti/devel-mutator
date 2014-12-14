@@ -42,6 +42,23 @@ subtest 'reverts original code' => sub {
     like _slurp_file("$dir/lib/foo.pm"), qr/print 1 \+ 1/;
 };
 
+subtest 'removes killed mutations' => sub {
+    my $dir = File::Temp->newdir(CLEANUP => 1);
+
+    _write_file("$dir/lib/foo.pm", 'print 1 + 1');
+    _write_file("$dir/mutants/abcde/lib/foo.pm", 'print 1 - 1');
+    _write_file("$dir/t/00.t", 'use Test::More; ok(0); done_testing;');
+
+    my $command = _build_command(
+        root    => $dir,
+        remove  => 1,
+        command => "cd $dir; prove -l t"
+    );
+    $command->run;
+
+    ok !-d "$dir/mutants/abcde";
+};
+
 sub _write_file {
     my ($file, $content) = @_;
 
