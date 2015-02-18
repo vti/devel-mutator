@@ -56,6 +56,8 @@ Infinite loops can be created easily. The solution is to run the test suite
 limited in time through a `timeout` option, which is 10s by default. After 10s
 of running, the test suite is killed and `n/a timeout` is reported.
 
+# METHODS
+
 # LICENSE
 
 Copyright (C) vti.
@@ -65,4 +67,15 @@ it under the same terms as Perl itself.
 
 # AUTHOR
 
-vti <viacheslav.t@gmail.com>
+Viacheslav Tykhanovskyi, <viacheslav.t@gmail.com>
+
+# COPYRIGHT AND LICENSE
+
+Copyright (C) 2015, Viacheslav Tykhanovskyi
+
+This program is free software, you can redistribute it and/or modify it under
+the terms of the Artistic License version 2.0.
+
+This program is distributed in the hope that it will be useful, but without any
+warranty; without even the implied warranty of merchantability or fitness for
+a particular purpose.
