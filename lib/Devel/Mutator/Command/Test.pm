@@ -38,7 +38,7 @@ sub run {
         print "($current/$total) $mutant ... ";
         $current++;
 
-        my ($mutant_id, $orig_file) = $mutant =~ m{^$mutants_dir/(.*?)/(.*$)};
+        my ($mutant_id, $orig_file) = $mutant =~ m{^\Q$mutants_dir\E/(.*?)/(.*$)};
         $orig_file = File::Spec->catfile($self->{root}, $orig_file);
         move($orig_file, "$orig_file.bak");
 
