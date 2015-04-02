@@ -2,6 +2,11 @@ Revision history for Perl extension Devel-Mutator
 
 {{$NEXT}}
 
+0.02 2015-04-02T11:22:57Z
+
+    - incompatibility with perl 5.10.1 and earlier (chorny)
+    - escape $mutants_dir in regex (chorny)
+
 0.01 2015-02-18T11:32:07Z
 
     - original version

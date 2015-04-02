@@ -58,12 +58,9 @@ of running, the test suite is killed and `n/a timeout` is reported.
 
 # METHODS
 
-# LICENSE
+# CREDITS
 
-Copyright (C) vti.
-
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.
+Alexandr Ciornii (chorny)
 
 # AUTHOR
 
