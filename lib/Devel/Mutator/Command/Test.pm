@@ -38,7 +38,7 @@ sub run {
         print "($current/$total) $mutant ... ";
         $current++;
 
-        my ($mutant_id, $orig_file) = $mutant =~ m{^$mutants_dir/(.*?)/(.*$)};
+        my ($mutant_id, $orig_file) = $mutant =~ m{^\Q$mutants_dir\E/(.*?)/(.*$)};
         $orig_file = File::Spec->catfile($self->{root}, $orig_file);
         move($orig_file, "$orig_file.bak");
 
@@ -126,7 +126,7 @@ sub _read_dir {
 
     opendir(my $dh, $dir) || die "Can't open directory '$dir'";
     my @files;
-    while (readdir $dh) {
+    while ($_ = readdir $dh) { #using without explicit assign requires perl 5.12
         next if /^\./;
 
         my $file = "$dir/$_";
