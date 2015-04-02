@@ -71,12 +71,9 @@ of running, the test suite is killed and C<n/a timeout> is reported.
 
 =head1 METHODS
 
-=head1 LICENSE
+=head1 CREDITS
 
-Copyright (C) vti.
-
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.
+Alexandr Ciornii (chorny)
 
 =head1 AUTHOR
 
