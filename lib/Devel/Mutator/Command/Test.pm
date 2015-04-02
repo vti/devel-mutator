@@ -126,7 +126,7 @@ sub _read_dir {
 
     opendir(my $dh, $dir) || die "Can't open directory '$dir'";
     my @files;
-    while (readdir $dh) {
+    while ($_ = readdir $dh) { #using without explicit assign requires perl 5.12
         next if /^\./;
 
         my $file = "$dir/$_";
