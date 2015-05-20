@@ -21,7 +21,7 @@ subtest 'generate id' => sub {
 
     my @mutants = $generator->generate($code);
 
-    is $mutants[0]->{id}, 'ce4bf5cf65d8c1176a54889a49f67172';
+    is $mutants[0]->{id}, 'f1ee370f06603029a758210b914cda90';
 };
 
 subtest 'mutate code' => sub {
@@ -31,7 +31,7 @@ subtest 'mutate code' => sub {
 
     my @mutants = $generator->generate($code);
 
-    is $mutants[0]->{content}, '1 < 1';
+    is $mutants[0]->{content}, '1 <= 1';
 };
 
 done_testing;
