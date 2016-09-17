@@ -26,7 +26,8 @@ elsif ($opts->{test}) {
     exit Devel::Mutator::Command::Test->new(
         verbose => ($opts->{'-v'} || $opts->{'--verbose'}),
         remove  => $opts->{'--remove'},
-        timeout => $opts->{'--timeout'}
+        timeout => $opts->{'--timeout'},
+	command => $opts->{'--command'}
     )->run;
 }
 
