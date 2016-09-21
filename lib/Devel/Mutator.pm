@@ -75,6 +75,10 @@ of running, the test suite is killed and C<n/a timeout> is reported.
 
 Alexandr Ciornii (chorny)
 
+Tim Teasdale (hooverbag)
+
+Patricio Valle (pvallev)
+
 =head1 AUTHOR
 
 Viacheslav Tykhanovskyi, E<lt>viacheslav.t@gmail.comE<gt>
