@@ -62,6 +62,10 @@ of running, the test suite is killed and `n/a timeout` is reported.
 
 Alexandr Ciornii (chorny)
 
+Tim Teasdale (hooverbag)
+
+Patricio Valle (pvallev)
+
 # AUTHOR
 
 Viacheslav Tykhanovskyi, <viacheslav.t@gmail.com>

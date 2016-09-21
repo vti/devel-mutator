@@ -4,7 +4,7 @@
       "Viacheslav Tykhanovskyi, <viacheslav.t@gmail.com>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v2.3.0, CPAN::Meta::Converter version 2.142690",
+   "generated_by" : "Minilla/v3.0.1, CPAN::Meta::Converter version 2.150010",
    "license" : [
       "artistic_2"
    ],
@@ -73,9 +73,12 @@
          "web" : "https://github.com/vti/devel-mutator"
       }
    },
-   "version" : "0.02",
+   "version" : "0.03",
    "x_authority" : "cpan:VTI",
    "x_contributors" : [
-      "Alexandr Ciornii <alexchorny@gmail.com>"
-   ]
+      "Alexandr Ciornii <alexchorny@gmail.com>",
+      "Patricio Valle <patricio.valle@globant.com>",
+      "Tim Teasdale <tim.teasdale@gmail.com>"
+   ],
+   "x_serialization_backend" : "JSON::PP version 2.27300"
 }
